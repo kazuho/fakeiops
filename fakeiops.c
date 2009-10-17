@@ -53,12 +53,12 @@ OVERRIDE(open, int, (const char* pathname, int flags, ...))
 
 OVERRIDE(fsync, int, (int fd))
 {
-  return usleep_val != 0 ? (usleep(usleep_val), 0) : fsync(fd);
+  return usleep_val != 0 ? (usleep(usleep_val), 0) : (*orig_fsync)(fd);
 }
 
 OVERRIDE(fdatasync, int, (int fd))
 {
-  return usleep_val != 0 ? (usleep(usleep_val), 0) : fdatasync(fd);
+  return usleep_val != 0 ? (usleep(usleep_val), 0) : (*orig_fdatasync)(fd);
 }
 
 OVERRIDE(dup, int, (int oldfd))
