@@ -1,0 +1,7 @@
+FakeIOPS - an LD_PRELOAD library for simulating storage systems with various IOPS
+
+# create library
+% gcc -fPIC -Wall -g -O -shared fakeiops.c -ldl -o fakeiops.so
+
+# and run tests (1000 iops)
+% LD_PRELOAD=/path-to/fakeiops.so FAKEIOPS=1000 ./testprog
